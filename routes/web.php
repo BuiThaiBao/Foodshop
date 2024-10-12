@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('add', [MenuController::class, 'create']);
             Route::post('add', [MenuController::class, 'store']);
             Route::get('list', [MenuController::class, 'index']);
+            Route::delete('/admin/menus/destroy/{id}', [MenuController::class, 'destroy'])->name('menu.destroy');
         });
     });
 });

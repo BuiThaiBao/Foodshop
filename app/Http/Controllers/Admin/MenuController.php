@@ -7,6 +7,7 @@ use App\Http\Requests\Menu\CreateFormRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
+
 use App\Http\Services\Menu\MenuService;
 
 class MenuController extends Controller
@@ -38,6 +39,20 @@ class MenuController extends Controller
             'title' => 'Danh sách Danh mục',
             'menus' => $this->menuService->getAll()
 
+        ]);
+    }
+    public function destroy(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $result = $this->menuService->destroy($request);
+        if ($result) {
+            return response()->json([
+                'error' => false,
+                'message' => 'Xóa thành công!',
+
+            ]);
+        }
+        return response()->json([
+            'error' => true,
         ]);
     }
 }
